@@ -13,8 +13,12 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 	instruction_t op_code[] = {
 		{"pall", _pall},
 		{"add", _add},
+		{"mul", _mul},
+		{"div", _div},
 		{"push", _push},
 		{"pint", _pint},
+		{"sub", _sub},
+		{"nop", _nop},
 		{"swap", _swap},
 		{"pop", _pop},
 		{NULL, NULL},
