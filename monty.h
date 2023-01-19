@@ -26,6 +26,24 @@ typedef struct stack_s
 } stack_t;
 
 /**
+ * struct xtrn_s - an externally declared variable
+ * @value: linenumber
+ * @m_script: the montyscript
+ * @buffer: buffer holding the lines
+ * @stack: the stack struct
+ * @type: decides if to function as stack or queue
+ */
+typedef struct xtrn_s
+{
+	char *value;
+	FILE *m_script;
+	char *buffer;
+	stack_t *stack;
+	int type;
+} xtrn_t;
+
+
+/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
