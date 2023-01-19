@@ -60,6 +60,7 @@ typedef struct instruction_s
 void _push(stack_t **, unsigned int);
 void _pall(stack_t **, unsigned int);
 void _pint(stack_t **, unsigned int);
+void _pop(stack_t **, unsigned int);
 void (*getfunc(char *, unsigned int))(stack_t **stack, unsigned int);
 void free_stack(stack_t *stack);
 void free_xtrn(void);

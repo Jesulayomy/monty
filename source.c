@@ -14,6 +14,7 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 		{"pall", _pall},
 		{"push", _push},
 		{"pint", _pint},
+		{"pop", _pop},
 		{NULL, NULL},
 	};
 	int i, boolean;

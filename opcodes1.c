@@ -82,3 +82,36 @@ void _pint(stack_t **stack, unsigned int line_no)
 		;
 	printf("%d\n", temp->n);
 }
+
+/**
+ * _pop - removes the elements on top of the stack
+ * @stack: the stack as a doubly linked list
+ * @line_no: to return in case of an error
+ * Return: void
+ */
+void _pop(stack_t **stack, unsigned int line_no)
+{
+	stack_t *prev, *temp = *stack;
+
+	if (temp == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_no);
+		free_xtrn();
+		exit(EXIT_FAILURE);
+	}
+
+	if (temp->next == NULL)
+	{
+		*stack = NULL;
+		free(temp);
+		return;
+	}
+
+	for (; temp->next->next; temp = temp->next)
+		;
+
+	prev = temp->next;
+	temp->next = NULL;
+
+	free(prev);
+}
