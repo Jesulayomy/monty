@@ -58,9 +58,12 @@ typedef struct instruction_s
 } instruction_t;
 
 void _push(stack_t **, unsigned int);
+void _add(stack_t **, unsigned int);
 void _pall(stack_t **, unsigned int);
 void _pint(stack_t **, unsigned int);
 void _pop(stack_t **, unsigned int);
+void _swap(stack_t **, unsigned int);
+char *_itoa(int);
 void (*getfunc(char *, unsigned int))(stack_t **stack, unsigned int);
 void free_stack(stack_t *stack);
 void free_xtrn(void);

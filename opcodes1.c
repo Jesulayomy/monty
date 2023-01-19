@@ -24,12 +24,14 @@ void _push(stack_t **stack, unsigned int line_no)
 	else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_no);
+		free(new);
 		free_xtrn();
 		exit(EXIT_FAILURE);
 	}
 
 	new->n = n;
 	new->prev = NULL;
+	new->next = NULL;
 
 	if (!(*stack))
 		*stack = new;
@@ -114,4 +116,43 @@ void _pop(stack_t **stack, unsigned int line_no)
 	temp->next = NULL;
 
 	free(prev);
+}
+
+/**
+ * _swap - swaps the elements on top of the stack
+ * @stack: the stack as a doubly linked list
+ * @line_no: to return in case of an error
+ * Return: void
+ */
+void _swap(stack_t **stack, unsigned int line_no)
+{
+	stack_t *sub, *temp = *stack;
+
+	if ((*stack == NULL) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_no);
+		free_xtrn();
+		exit(EXIT_FAILURE);
+	}
+
+	for (; temp->next->next; temp = temp->next)
+		;
+
+	mt.value = _itoa(temp->n);
+	sub = temp;
+	if (temp == *stack)
+	{
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+	}
+	else
+	{
+		temp = temp->next;
+		sub->prev->next = temp;
+		temp->prev = sub->prev;
+	}
+
+	free(sub);
+	_push(stack, line_no);
+	free(mt.value);
 }
