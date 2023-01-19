@@ -61,3 +61,27 @@ void _pall(stack_t **stack, unsigned int line_no)
 			printf("%d\n", temp->n);
 	}
 }
+
+/**
+ * _pint - print the elements on top of the stack
+ * @stack: the stack as a doubly linked list
+ * @line_no: to return in case of an error
+ * Return: void
+ */
+void _pall(stack_t **stack, unsigned int line_no)
+{
+	stack_t *temp = *stack;
+
+	if (temp != NULL)
+	{
+		for (; temp->next; temp = temp->next)
+			;
+			printf("%d\n", temp->n);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_no);
+		free_xtrn();
+		exit(EXIT_FAILURE);
+	}
+}
