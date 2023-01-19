@@ -68,7 +68,7 @@ void _pall(stack_t **stack, unsigned int line_no)
  * @line_no: to return in case of an error
  * Return: void
  */
-void _pall(stack_t **stack, unsigned int line_no)
+void _pint(stack_t **stack, unsigned int line_no)
 {
 	stack_t *temp = *stack;
 
