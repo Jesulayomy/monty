@@ -11,16 +11,11 @@ xtrn_t mt;
 void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 {
 	instruction_t op_code[] = {
-		{"pall", _pall},
-		{"add", _add},
-		{"mul", _mul},
-		{"div", _div},
-		{"push", _push},
-		{"pint", _pint},
-		{"sub", _sub},
-		{"nop", _nop},
-		{"swap", _swap},
-		{"pop", _pop},
+		{"mod", _mod}, {"add", _add}, {"mul", _mul}, {"sub", _sub},
+		{"div", _div}, {"pop", _pop}, {"nop", _nop},
+		{"push", _push}, {"pint", _pint}, {"pchar", _pchar},
+		{"pall", _pall}, {"swap", _swap}, {"pstr", _pstr},
+		{"rotr", _rotr}, {"rotl", _rotl},
 		{NULL, NULL},
 	};
 	int i, boolean;
