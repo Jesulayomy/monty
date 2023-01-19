@@ -2,28 +2,17 @@
 
 xtrn_t mt;
 
-void _pall(stack_t **stack, unsigned int line_no)
-{
-	stack_t *temp = *stack;
-	(void)line_no;
-
-	if (temp != NULL)
-	{
-		for (; temp->next; temp = temp->next)
-			;
-		for (; temp; temp = temp->prev)
-			printf("%d\n", temp->n);
-	}
-}
-
+/**
+ * get_op - gets the operation
+ * @opcode: opcode namd
+ * @line: linevto check
+ * Return: none
+ */
 void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 {
 	instruction_t op_code[] = {
 		{"pall", _pall},
-		//{"add", _add},
-	//	{"swap", _swap},
-	//	{"pop", _pop},
-	//	{"push", _push},
+		{"push", _push},
 		{NULL, NULL},
 	};
 	int i, boolean;
@@ -48,21 +37,31 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
  */
 int main(int argc, char **argv)
 {
-	unsigned int line_no;
-	char *line;
-	char *cmd;
-	void (*func)(stack_t **stack, unsigned int line_no);
-
-	mt.stack = NULL;
-	mt.buffer = NULL;
-	mt.value = NULL;
-	mt.type = 1;
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
+	mt.stack = NULL;
+	mt.buffer = NULL;
+	mt.value = NULL;
+	mt.type = 1;
+
+	setup_monty(argv, 0);
+
+	return (0);
+}
+
+/**
+ * setup_monty - opens and runs monty file
+ * @argv: argument vector
+ * @line_no: not telling you
+ * Return: nil
+ */
+void setup_monty(char **argv, unsigned int line_no)
+{
+	char *line, *cmd;
+	void (*func)(stack_t **stack, unsigned int line_no);
 
 	mt.m_script = fopen(argv[1], "r");
 	if (mt.m_script == NULL)
@@ -71,7 +70,6 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	line_no = 0;
 	while (1)
 	{
 		line_no++;
@@ -84,6 +82,7 @@ int main(int argc, char **argv)
 		}
 
 		line = fgets(mt.buffer, 1024, mt.m_script);
+
 		if (line == NULL)
 			break;
 
@@ -91,12 +90,10 @@ int main(int argc, char **argv)
 		mt.value = strtok(NULL, " \n\t\a\r");
 		if (cmd != NULL && cmd[0] != 35)
 		{
-			// run the command by calling the func
 			func = get_op(cmd, line_no);
 			func(&mt.stack, line_no);
 		}
 		free(mt.buffer);
 	}
-
-	return (0);
+	free_xtrn();
 }

@@ -57,4 +57,14 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void _push(stack_t **, unsigned int);
+void _pall(stack_t **, unsigned int);
+void (*getfunc(char *, unsigned int))(stack_t **stack, unsigned int);
+void free_stack(stack_t *stack);
+void free_xtrn(void);
+void setup_monty(char **argv, unsigned int line_no);
+int my_isdigit(char *);
+
+extern xtrn_t mt;
+
 #endif
