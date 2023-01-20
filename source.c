@@ -27,8 +27,7 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 			return (op_code[i].f);
 	}
 
-	(void)line;
-	/* fprintf(stderr, "L%d unknown instruction %s\n", line, opcode); */
+	fprintf(stderr, "L%d unknown instruction %s\n", line, opcode);
 	exit(EXIT_FAILURE);
 }
 
@@ -88,7 +87,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		/* fprintf(stderr, "USAGE: monty file\n"); */
 		exit(EXIT_FAILURE);
 	}
 	mt.stack = NULL;
