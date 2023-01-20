@@ -16,7 +16,7 @@ void _stack(stack_t **stack, unsigned int lnum)
 }
 
 /**
- * op_queue - sets the format of data to queue
+ * _queue - sets the format of data to queue
  * @stack: stack
  * @lnum: line number
  *
