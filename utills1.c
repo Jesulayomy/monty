@@ -66,6 +66,8 @@ int my_isdigit(char *nstr)
 		return (0);
 	for (i = 0; nstr[i] != '\0' ; i++)
 	{
+		if (nstr[0] == '-')
+			continue;
 		if (nstr[i] < 48 || nstr[i] > 57)
 			return (0);
 	}

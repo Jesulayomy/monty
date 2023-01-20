@@ -61,7 +61,6 @@ void setup_monty(char **argv, unsigned int line_no)
 		}
 
 		line = fgets(mt.buffer, 1024, mt.m_script);
-
 		if (line == NULL)
 			break;
 
