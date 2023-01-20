@@ -28,9 +28,10 @@ void _push(stack_t **stack, unsigned int line_no)
 		exit(EXIT_FAILURE);
 	}
 
-	if (mt.type != 1)
+	if (mt.type == 0)
 	{
 		q_push(stack, n);
+		free(new);
 		return;
 	}
 
