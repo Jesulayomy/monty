@@ -11,6 +11,15 @@ void _push(stack_t **stack, unsigned int line_no)
 	stack_t *new, *temp = *stack;
 	int n;
 
+	if (my_isdigit(mt.value) == 1)
+		n = atoi(mt.value);
+	else
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_no);
+		free_xtrn();
+		exit(EXIT_FAILURE);
+	}
+
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
@@ -19,14 +28,10 @@ void _push(stack_t **stack, unsigned int line_no)
 		exit(EXIT_FAILURE);
 	}
 
-	if (my_isdigit(mt.value) == 1)
-		n = atoi(mt.value);
-	else
+	if (mt.type != 1)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_no);
-		free(new);
-		free_xtrn();
-		exit(EXIT_FAILURE);
+		q_push(stack, n);
+		return;
 	}
 
 	new->n = n;

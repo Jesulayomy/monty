@@ -57,27 +57,30 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void _push(stack_t **, unsigned int);
+char *_itoa(int);
+int my_isdigit(char *);
+void (*getfunc(char *, unsigned int))(stack_t **, unsigned int);
 void _add(stack_t **, unsigned int);
+void _div(stack_t **, unsigned int);
+void _mod(stack_t **, unsigned int);
+void _mul(stack_t **, unsigned int);
+void _nop(stack_t **, unsigned int);
 void _pall(stack_t **, unsigned int);
+void _pchar(stack_t **, unsigned int);
 void _pint(stack_t **, unsigned int);
 void _pop(stack_t **, unsigned int);
 void _pstr(stack_t **, unsigned int);
-void _rotr(stack_t **, unsigned int);
+void _push(stack_t **, unsigned int);
+void _queue(stack_t **, unsigned int);
 void _rotl(stack_t **, unsigned int);
-void _mod(stack_t **, unsigned int);
-void _pchar(stack_t **, unsigned int);
+void _rotr(stack_t **, unsigned int);
+void _stack(stack_t **, unsigned int);
 void _sub(stack_t **, unsigned int);
-void _mul(stack_t **, unsigned int);
-void _div(stack_t **, unsigned int);
-void _nop(stack_t **, unsigned int);
 void _swap(stack_t **, unsigned int);
-char *_itoa(int);
-void (*getfunc(char *, unsigned int))(stack_t **stack, unsigned int);
-void free_stack(stack_t *stack);
+void free_stack(stack_t *);
 void free_xtrn(void);
-void setup_monty(char **argv, unsigned int line_no);
-int my_isdigit(char *);
+void q_push(stack_t **, int);
+void setup_monty(char **, unsigned int);
 
 extern xtrn_t mt;
 

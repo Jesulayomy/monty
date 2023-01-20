@@ -15,8 +15,8 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 		{"div", _div}, {"pop", _pop}, {"nop", _nop},
 		{"push", _push}, {"pint", _pint}, {"pchar", _pchar},
 		{"pall", _pall}, {"swap", _swap}, {"pstr", _pstr},
-		{"rotr", _rotr}, {"rotl", _rotl},
-		{NULL, NULL},
+		{"rotr", _rotr}, {"rotl", _rotl}, {"stack", _stack},
+		{"queue", _queue}, {NULL, NULL},
 	};
 	int i, boolean;
 
@@ -29,30 +29,6 @@ void (*get_op(char *opcode, unsigned int line))(stack_t **, unsigned int)
 
 	fprintf(stderr, "L%d unknown instruction %s\n", line, opcode);
 	exit(EXIT_FAILURE);
-}
-
-/**
- * main - runs the monty script in a noninteractive mode
- * @argv: the arg vector
- * @argc: argument count
- *
- * Return: 0 if successful
- */
-int main(int argc, char **argv)
-{
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	mt.stack = NULL;
-	mt.buffer = NULL;
-	mt.value = NULL;
-	mt.type = 1;
-
-	setup_monty(argv, 0);
-
-	return (0);
 }
 
 /**
@@ -99,4 +75,28 @@ void setup_monty(char **argv, unsigned int line_no)
 		free(mt.buffer);
 	}
 	free_xtrn();
+}
+
+/**
+ * main - runs the monty script in a noninteractive mode
+ * @argv: the arg vector
+ * @argc: argument count
+ *
+ * Return: 0 if successful
+ */
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	mt.stack = NULL;
+	mt.buffer = NULL;
+	mt.value = NULL;
+	mt.type = 1;
+
+	setup_monty(argv, 0);
+
+	return (0);
 }
