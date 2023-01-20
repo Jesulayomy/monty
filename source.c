@@ -56,7 +56,7 @@ void setup_monty(char **argv, unsigned int line_no)
 		mt.buffer = malloc(sizeof(char) * 1024);
 		if (mt.buffer == NULL)
 		{
-			fprintf(stderr, "Error: malloc failed\n");
+			/* fprintf(stderr, "Error: malloc failed\n"); */
 			exit(EXIT_FAILURE);
 		}
 
